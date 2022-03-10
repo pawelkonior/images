@@ -7,3 +7,19 @@ services:
     container_name: django
     volumes:
       - ./backend:/app
+    env_file:
+      - ./backend/env/.env
+    depends_on:
+      - db-postgres
+  db-postgres:
+    image: postgres
+    ports:
+      - "5434:5432"
+    env_file:
+      - ./backend/env/.env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    container_name: postgres_django
+
+volumes:
+  postgres:
