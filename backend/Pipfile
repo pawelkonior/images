@@ -10,6 +10,9 @@ psycopg2 = "*"
 pytest = "==7.0.1"
 djangorestframework = "==3.13.1"
 pytest-django = "==4.5.2"
+django-cors-headers = "==3.11.0"
+pillow = "*"
+python-magic = "==0.4.25"
 
 [dev-packages]
 
