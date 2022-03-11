@@ -36,3 +36,9 @@ def test_image(user):
     )
 
     return image
+
+
+@pytest.fixture
+def api_rf():
+    from rest_framework.test import APIRequestFactory
+    return APIRequestFactory()

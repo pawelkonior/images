@@ -6,13 +6,16 @@ name = "pypi"
 [packages]
 django = "==4.0.3"
 dj-database-url = "==0.5.0"
-psycopg2 = "*"
+psycopg2-binary = "*"
 pytest = "==7.0.1"
 djangorestframework = "==3.13.1"
 pytest-django = "==4.5.2"
 django-cors-headers = "==3.11.0"
 pillow = "*"
 python-magic = "==0.4.25"
+libmagic = "*"
+drf-yasg = "==1.20"
+pytest-cov = "*"
 
 [dev-packages]
 

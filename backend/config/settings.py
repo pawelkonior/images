@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'drf_yasg',
 
     'accounts.apps.AccountsConfig',
     'images.apps.ImagesConfig',
@@ -86,12 +87,12 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-db_from_env = dj_database_url.config(
-    default=DATABASE_URL, conn_max_age=500, ssl_require=False
-)
-
-DATABASES['default'].update(db_from_env)
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+# db_from_env = dj_database_url.config(
+#     default=DATABASE_URL, conn_max_age=500, ssl_require=False
+# )
+#
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
