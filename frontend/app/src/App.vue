@@ -4,7 +4,7 @@
     |
     <router-link to="/tiers">Tiers</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss" scoped>
