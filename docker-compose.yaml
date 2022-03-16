@@ -1,4 +1,13 @@
 services:
+  proxy:
+    build:
+      context: ./proxy
+    ports:
+      - "8082:80"
+    depends_on:
+      - backend
+    networks:
+      - backend-network
   backend:
     build: ./backend
     ports:
@@ -7,10 +16,17 @@ services:
     container_name: django
     volumes:
       - ./backend:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
     env_file:
       - ./backend/env/.env
     depends_on:
       - db-postgres
+      - db-cache
+    networks:
+      - backend-network
+      - db-postgres-network
+      - db-cache-network
   db-postgres:
     image: postgres
     ports:
@@ -20,6 +36,27 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     container_name: postgres_django
+    networks:
+      - db-postgres-network
+  db-cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    networks:
+      - db-cache-network
 
 volumes:
   postgres:
+  redisdata:
+  static_volume:
+  media_volume:
+
+networks:
+  backend-network:
+    driver: bridge
+  db-postgres-network:
+    driver: bridge
+  db-cache-network:
+    driver: bridge

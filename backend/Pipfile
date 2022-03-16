@@ -16,6 +16,10 @@ python-magic = "==0.4.25"
 libmagic = "*"
 drf-yasg = "==1.20"
 pytest-cov = "*"
+django-redis = "*"
+django-extensions = "*"
+factory-boy = "*"
+pytest-factoryboy = "*"
 
 [dev-packages]
 
