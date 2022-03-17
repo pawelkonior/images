@@ -1,3 +1,6 @@
+secrets:
+  db_password: db_password.txt
+
 services:
   proxy:
     build:
@@ -8,12 +11,28 @@ services:
       - backend
     networks:
       - backend-network
+      - frontend-network
+    container_name: proxy
+    secrets:
+      - db_password
+  frontend:
+    image: pawelkonior/images_frontend
+    build:
+      context: ./frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend/src:/app/src
+    networks:
+      - frontend-network
+    stdin_open: true
+    container_name: vue
   backend:
     build: ./backend
-    ports:
-      - "8000:8000"
+#    ports:
+#      - "8000:8000"
     restart: "on-failure"
-    container_name: django
+#    container_name: django
     volumes:
       - ./backend:/app
       - static_volume:/app/staticfiles
@@ -46,6 +65,7 @@ services:
       - redisdata:/data
     networks:
       - db-cache-network
+    container_name: redis_django
 
 volumes:
   postgres-dj:
@@ -55,6 +75,8 @@ volumes:
 
 networks:
   backend-network:
+    driver: bridge
+  frontend-network:
     driver: bridge
   db-postgres-network:
     driver: bridge

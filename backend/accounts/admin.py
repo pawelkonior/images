@@ -4,9 +4,10 @@ from django.contrib.auth.admin import UserAdmin
 
 CustomUser = get_user_model()
 
+
 class CustomUserDashboard(UserAdmin):
     list_display = ('id', 'username', 'tier')
-    list_editable = ('tier', )
+    list_editable = ('tier',)
     list_display_links = ('id', 'username')
     ordering = ('-id',)
 

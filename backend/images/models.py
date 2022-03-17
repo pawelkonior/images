@@ -22,7 +22,7 @@ class Image(models.Model):
 
 class Thumbnail(models.Model):
     image = models.ForeignKey('Image', on_delete=models.CASCADE, related_name='thumbnails')
-    url = models.FileField(upload_to='resized_images')
+    url = models.FileField(upload_to='resized_images/')
     height = models.PositiveIntegerField()
 
     def __str__(self):

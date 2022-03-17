@@ -147,25 +147,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 CORS_ORIGIN_WHITELIST = (
-    'http://locahlost:8080',
-    'http://locahlost:8082',
-    'http://locahlost:8000',
-    'http://locahlost:80',
+    'http://localhost:8080',
+    'http://localhost:8082',
+    'http://localhost:8000',
+    'http://localhost:80',
     'http://0.0.0.0:8082',
     'http://0.0.0.0:8000',
     'http://0.0.0.0:80',
-    'http://backend'
+    'http://backend:8082',
+    'http://backend:80'
 )
 
 CSRF_TRUSTED_ORIGINS = (
-    'http://*.locahlost:8080',
-    'http://*.locahlost:8082',
-    'http://*.locahlost:8000',
-    'http://*.locahlost:80',
-    'http://*.0.0.0.0:8082',
-    'http://*.0.0.0.0:8000',
-    'http://*.0.0.0.0:80',
-    'http://*.backend',
+    'http://localhost:8080',
+    'http://localhost:8082',
+    'http://localhost:8000',
+    'http://localhost:80',
+    'http://0.0.0.0:8082',
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:80',
+    'http://backend:8082',
+    'http://backend:80',
     'http://*.'
 )
 CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -181,7 +183,7 @@ REST_FRAMEWORK = {
 }
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 IMAGE_TYPES = ['jpeg', 'png']
 
