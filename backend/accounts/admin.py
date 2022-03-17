@@ -4,8 +4,15 @@ from django.contrib.auth.admin import UserAdmin
 
 CustomUser = get_user_model()
 
-class CustomUserAdmin(UserAdmin):
-    model = CustomUser
+class CustomUserDashboard(UserAdmin):
+    list_display = ('id', 'username', 'tier')
+    list_editable = ('tier', )
+    list_display_links = ('id', 'username')
+    ordering = ('-id',)
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserDashboard)
+
+admin.site.site_header = 'Admin Panel'
+admin.site.site_title = 'Image Resizer'
+admin.site.index_title = 'Administration'

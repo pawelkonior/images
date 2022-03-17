@@ -38,12 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third-party
     'rest_framework',
-    'corsheaders',
+    'django_extensions',
     'drf_yasg',
+    'corsheaders',
 
+    # Local
     'accounts.apps.AccountsConfig',
+    'tiers.apps.TiersConfig',
     'images.apps.ImagesConfig',
+    'expiring_links.apps.ExpiringLinksConfig',
 ]
 
 MIDDLEWARE = [
@@ -87,12 +92,12 @@ DATABASES = {
     }
 }
 
-# DATABASE_URL = os.environ.get('DATABASE_URL')
-# db_from_env = dj_database_url.config(
-#     default=DATABASE_URL, conn_max_age=500, ssl_require=False
-# )
-#
-# DATABASES['default'].update(db_from_env)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+db_from_env = dj_database_url.config(
+    default=DATABASE_URL, conn_max_age=500, ssl_require=False
+)
+
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -143,7 +148,31 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 CORS_ORIGIN_WHITELIST = (
     'http://locahlost:8080',
+    'http://locahlost:8082',
+    'http://locahlost:8000',
+    'http://locahlost:80',
+    'http://0.0.0.0:8082',
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:80',
+    'http://backend'
 )
+
+CSRF_TRUSTED_ORIGINS = (
+    'http://*.locahlost:8080',
+    'http://*.locahlost:8082',
+    'http://*.locahlost:8000',
+    'http://*.locahlost:80',
+    'http://*.0.0.0.0:8082',
+    'http://*.0.0.0.0:8000',
+    'http://*.0.0.0.0:80',
+    'http://*.backend',
+    'http://*.'
+)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http://*",
+]
+
+CORS_ALLOW_ALL_ORIGINS: True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -173,3 +202,5 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 CACHE_TTL = 60 * 5
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

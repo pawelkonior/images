@@ -14,7 +14,8 @@ def generate_superuser(apps, schema_editor):
     User.objects.create_superuser(
         username=DJANGO_SU_NAME,
         email=DJANGO_SU_EMAIL,
-        password=DJANGO_SU_PASSWORD
+        password=DJANGO_SU_PASSWORD,
+        tier_id=3
     )
 
 
